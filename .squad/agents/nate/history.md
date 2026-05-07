@@ -44,3 +44,23 @@ Created contract-first security skeleton for cross-domain transfer pipeline:
 - LUKS2 helpers: `transfer/encrypt/{format,open}-drive.sh`
 
 - 2026-05-07: Transfer validation structure was established, but the continuity gate required a reviewer-driven revision to become fail-closed and operator-controlled.
+
+### 2026-05-07: Schema Air-Gap Hygiene Fix
+
+Removed public internet URL references from transfer manifest schema metadata:
+
+**Changed:**
+- `$schema`: `http://json-schema.org/draft-07/schema#` → `urn:json-schema:draft-07`
+- `$id`: `https://github.com/adamdost/airgap-linux/...` → `urn:airgap-linux:transfer:manifest:v1.0.0`
+
+**Validation confirmed:**
+- Python stdlib validator still works correctly with URN identifiers
+- Schema validation remains functional offline
+- No external dependencies or network calls required
+
+**Rationale:**
+- Schema metadata fields (`$schema`, `$id`) are descriptive and not fetched at validation time
+- URN-style identifiers preserve semantic meaning without internet references
+- Air-gap hygiene: no public URLs in any high-side or transfer tooling
+
+- 2026-05-07: Decision merged into `.squad/decisions.md` and the inbox entry was cleared after final validation.

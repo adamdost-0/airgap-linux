@@ -128,3 +128,14 @@
   - Validation chain was defined contract-first with GPG, schema, continuity, checksums, and completeness.
   - Continuity remained stubbed in the original pass and required revision under reviewer lockout.
   - Stdlib-only validator and LUKS2 helpers were established.
+
+### Decision: Remove Public URLs from Manifest Schema Metadata
+- **File:** .squad/decisions/inbox/nate-schema-url-fix.md
+- **Date:** 2026-05-07
+- **Author:** Nate
+- **Status:** Implemented
+- **Task:** Replace public URI metadata in the transfer manifest schema with offline-safe identifiers
+- **Key points:**
+  - Replaced `$schema` and `$id` public URLs with URN-style identifiers.
+  - Offline JSON Schema validation remains functional with the existing stdlib validator.
+  - Schema metadata no longer references public internet resources.

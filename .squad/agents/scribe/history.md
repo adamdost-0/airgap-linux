@@ -10,3 +10,4 @@
 
 <!-- Append learnings below -->
 - 2026-05-07: Orchestration logs, the session log, and the merged decisions registry were updated for the project-structure setup pass.
+- 2026-05-07: Logged Nate's schema URL fix, merged the inbox decision, wrote final validation records, and cleared the inbox.
