@@ -9,3 +9,4 @@
 ## Learnings
 
 <!-- Append learnings below -->
+- 2026-05-07: Orchestration logs, the session log, and the merged decisions registry were updated for the project-structure setup pass.

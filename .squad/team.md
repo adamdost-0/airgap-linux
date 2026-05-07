@@ -18,6 +18,7 @@
 | Nate | Security Engineer | `.squad/agents/nate/charter.md` | ✅ Active |
 | Eady | Documentation Engineer | `.squad/agents/eady/charter.md` | ✅ Active |
 | Drucker | Cyber Security Analyst | `.squad/agents/drucker/charter.md` | ✅ Active |
+| Hanna | Product Manager | `.squad/agents/hanna/charter.md` | ✅ Active |
 | Scribe | Session Logger | `.squad/agents/scribe/charter.md` | 📋 Silent |
 | Ralph | Work Monitor | `.squad/agents/ralph/charter.md` | 🔄 Monitor |
 

@@ -63,4 +63,5 @@ When triaging, the Lead should ask:
 | Encryption, integrity, transfer | Nate | Drucker |
 | Documentation, diagrams, SVGs | Eady | — |
 | Threat modeling, compliance, STIGs | Drucker | Nate |
+| Backlog, acceptance, delivery oversight | Hanna | — |
 
