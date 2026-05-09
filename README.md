@@ -29,6 +29,7 @@ tests/                  Integration and validation tests
 ## Key Documents
 
 - [Architecture](docs/architecture.md) — System design, data flow, and monthly cycle
+- [Project Structure](docs/project-structure.md) — Canonical directory map and ownership
 - [Manifest Schema](docs/manifest-schema.md) — Transfer manifest JSON format
 - [ADR 001: Aptly Snapshot Diffs](docs/adr/001-aptly-snapshot-diffs.md) — Why Aptly, why diffs
 

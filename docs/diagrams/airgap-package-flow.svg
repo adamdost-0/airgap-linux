@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760" role="img" aria-labelledby="title desc">
+  <title id="title">airgap-linux package flow</title>
+  <desc id="desc">Monthly commercial-to-highside Aptly package flow and repository directory ownership.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#355C7D"/>
+    </marker>
+    <style>
+      .bg { fill: #F8FAFC; }
+      .lane { fill: #FFFFFF; stroke: #CBD5E1; stroke-width: 2; rx: 18; }
+      .lane-label { fill: #0F172A; font: 700 18px sans-serif; }
+      .title { fill: #0F172A; font: 700 24px sans-serif; }
+      .subtitle { fill: #475569; font: 400 14px sans-serif; }
+      .box { fill: #EEF6FF; stroke: #355C7D; stroke-width: 2; rx: 14; }
+      .box-alt { fill: #ECFDF5; stroke: #2F855A; stroke-width: 2; rx: 14; }
+      .box-soft { fill: #F1F5F9; stroke: #64748B; stroke-width: 2; rx: 14; }
+      .box-title { fill: #0F172A; font: 700 16px sans-serif; }
+      .box-text { fill: #334155; font: 13px sans-serif; }
+      .arrow { stroke: #355C7D; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .note { fill: #334155; font: 12px sans-serif; }
+      .legend { fill: #FFFFFF; stroke: #CBD5E1; stroke-width: 1.5; rx: 12; }
+      .legend-title { fill: #0F172A; font: 700 13px sans-serif; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1280" height="760"/>
+  <text class="title" x="40" y="42">airgap-linux package flow</text>
+  <text class="subtitle" x="40" y="66">Commercial-side upstream sync, monthly delta packaging, air-gapped transfer, and high-side publication.</text>
+
+  <rect class="lane" x="30" y="92" width="1220" height="250"/>
+  <rect class="lane" x="30" y="360" width="1220" height="250"/>
+  <text class="lane-label" x="52" y="124">Commercial side (low side)</text>
+  <text class="lane-label" x="52" y="392">High side (Secret / Top Secret)</text>
+
+  <rect class="box" x="70" y="150" width="180" height="108"/>
+  <text class="box-title" x="90" y="180">Ubuntu Archive</text>
+  <text class="box-text" x="90" y="202">Upstream source</text>
+  <text class="box-text" x="90" y="220">Commercial only</text>
+
+  <rect class="box" x="300" y="150" width="210" height="108"/>
+  <text class="box-title" x="320" y="180">commercial/aptly/</text>
+  <text class="box-text" x="320" y="202">Mirror definitions</text>
+  <text class="box-text" x="320" y="220">Date-stamped snapshots</text>
+
+  <rect class="box" x="560" y="150" width="220" height="108"/>
+  <text class="box-title" x="580" y="180">commercial/scripts/</text>
+  <text class="box-text" x="580" y="202">Diff, bundle, manifest</text>
+  <text class="box-text" x="580" y="220">Monthly delta package</text>
+
+  <rect class="box" x="830" y="150" width="210" height="108"/>
+  <text class="box-title" x="850" y="180">transfer/*</text>
+  <text class="box-text" x="850" y="202">verify / manifest / encrypt</text>
+  <text class="box-text" x="850" y="220">GPG, SHA-256, LUKS2</text>
+
+  <rect class="box-soft" x="1100" y="150" width="110" height="108"/>
+  <text class="box-title" x="1120" y="180">Drive</text>
+  <text class="box-text" x="1120" y="202">Sealed</text>
+  <text class="box-text" x="1120" y="220">media</text>
+
+  <line class="arrow" x1="250" y1="204" x2="300" y2="204"/>
+  <line class="arrow" x1="510" y1="204" x2="560" y2="204"/>
+  <line class="arrow" x1="780" y1="204" x2="830" y2="204"/>
+  <line class="arrow" x1="1040" y1="204" x2="1100" y2="204"/>
+
+  <rect class="box" x="70" y="418" width="220" height="108"/>
+  <text class="box-title" x="90" y="448">transfer drive</text>
+  <text class="box-text" x="90" y="470">Physical transfer only</text>
+  <text class="box-text" x="90" y="488">No network path</text>
+
+  <rect class="box-alt" x="340" y="418" width="220" height="108"/>
+  <text class="box-title" x="360" y="448">highside/scripts/</text>
+  <text class="box-text" x="360" y="470">Decrypt, verify, import</text>
+  <text class="box-text" x="360" y="488">Remove dropped packages</text>
+
+  <rect class="box-alt" x="620" y="418" width="220" height="108"/>
+  <text class="box-title" x="640" y="448">highside/aptly/</text>
+  <text class="box-text" x="640" y="470">Local repos only</text>
+  <text class="box-text" x="640" y="488">Publish to clients</text>
+
+  <rect class="box-soft" x="900" y="418" width="220" height="108"/>
+  <text class="box-title" x="920" y="448">APT clients</text>
+  <text class="box-text" x="920" y="470">Internal consumers</text>
+  <text class="box-text" x="920" y="488">apt update / install</text>
+
+  <line class="arrow" x1="190" y1="364" x2="190" y2="418"/>
+  <line class="arrow" x1="290" y1="472" x2="340" y2="472"/>
+  <line class="arrow" x1="560" y1="472" x2="620" y2="472"/>
+  <line class="arrow" x1="840" y1="472" x2="900" y2="472"/>
+
+  <text class="subtitle" x="72" y="564">Monthly cadence: mirror update -> snapshot diff -> bundle/sign -> encrypt -> courier transfer -> high-side ingest -> publish</text>
+
+  <rect class="legend" x="40" y="610" width="360" height="98"/>
+  <text class="legend-title" x="58" y="638">Commercial ownership</text>
+  <text class="note" x="58" y="660">commercial/aptly/</text>
+  <text class="note" x="58" y="678">commercial/scripts/</text>
+  <text class="note" x="58" y="696">commercial/infra/</text>
+
+  <rect class="legend" x="430" y="610" width="360" height="98"/>
+  <text class="legend-title" x="448" y="638">Transfer ownership</text>
+  <text class="note" x="448" y="660">transfer/manifest/</text>
+  <text class="note" x="448" y="678">transfer/verify/</text>
+  <text class="note" x="448" y="696">transfer/encrypt/</text>
+
+  <rect class="legend" x="820" y="610" width="420" height="98"/>
+  <text class="legend-title" x="838" y="638">High-side ownership</text>
+  <text class="note" x="838" y="660">highside/scripts/</text>
+  <text class="note" x="838" y="678">highside/aptly/</text>
+  <text class="note" x="838" y="696">highside/infra/ and tests/</text>
+</svg>

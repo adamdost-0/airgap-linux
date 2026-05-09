@@ -1,0 +1,282 @@
+{
+  "$schema": "urn:json-schema:draft-07",
+  "$id": "urn:airgap-linux:transfer:manifest:v1.0.0",
+  "title": "Airgap Transfer Manifest",
+  "description": "Schema for cross-domain Aptly snapshot transfer bundles",
+  "type": "object",
+  "required": [
+    "manifest_version",
+    "transfer_id",
+    "generated_at",
+    "source_snapshot",
+    "previous_snapshot",
+    "component",
+    "distribution",
+    "architecture",
+    "packages_added",
+    "packages_removed",
+    "packages_upgraded",
+    "transfer_size_bytes",
+    "package_count",
+    "gpg_signature",
+    "checksum_algorithm"
+  ],
+  "properties": {
+    "manifest_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semantic version of the manifest schema"
+    },
+    "transfer_id": {
+      "type": "string",
+      "pattern": "^transfer-[0-9]{8}-[0-9]{3}$",
+      "description": "Unique identifier for this transfer bundle"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 UTC timestamp of manifest generation"
+    },
+    "source_snapshot": {
+      "type": "object",
+      "required": ["name", "id", "created_at"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Aptly snapshot name"
+        },
+        "id": {
+          "type": "string",
+          "description": "Aptly internal snapshot UUID"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the snapshot was created"
+        }
+      },
+      "additionalProperties": false
+    },
+    "previous_snapshot": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "required": ["name", "id", "created_at"],
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Previous Aptly snapshot name"
+            },
+            "id": {
+              "type": "string",
+              "description": "Previous Aptly snapshot UUID"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "When the previous snapshot was created"
+            }
+          },
+          "additionalProperties": false
+        }
+      ],
+      "description": "Previous snapshot (delta base); null for initial transfer"
+    },
+    "component": {
+      "type": "string",
+      "enum": ["main", "universe", "security"],
+      "description": "Ubuntu component"
+    },
+    "distribution": {
+      "type": "string",
+      "pattern": "^[a-z]+$",
+      "description": "Ubuntu distribution codename (e.g., noble)"
+    },
+    "architecture": {
+      "type": "string",
+      "enum": ["amd64", "arm64", "i386"],
+      "description": "Target architecture"
+    },
+    "packages_added": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "version", "arch", "filename", "size_bytes", "sha256", "section", "priority"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Package name"
+          },
+          "version": {
+            "type": "string",
+            "description": "Package version"
+          },
+          "arch": {
+            "type": "string",
+            "description": "Architecture"
+          },
+          "filename": {
+            "type": "string",
+            "pattern": "^[^/]",
+            "description": "Relative path to .deb file in bundle"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "File size in bytes"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "SHA-256 checksum of the .deb file"
+          },
+          "section": {
+            "type": "string",
+            "description": "Debian section"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["required", "important", "standard", "optional", "extra"],
+            "description": "Package priority"
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "Packages new in this snapshot"
+    },
+    "packages_removed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "version", "arch", "reason"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Package name"
+          },
+          "version": {
+            "type": "string",
+            "description": "Version being removed"
+          },
+          "arch": {
+            "type": "string",
+            "description": "Architecture"
+          },
+          "reason": {
+            "type": "string",
+            "enum": ["superseded", "dropped-from-archive", "security-revoked"],
+            "description": "Why removed"
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "Packages dropped from previous snapshot"
+    },
+    "packages_upgraded": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "old_version", "new_version", "arch", "filename", "size_bytes", "sha256", "is_security_update"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Package name"
+          },
+          "old_version": {
+            "type": "string",
+            "description": "Previous version"
+          },
+          "new_version": {
+            "type": "string",
+            "description": "New version"
+          },
+          "arch": {
+            "type": "string",
+            "description": "Architecture"
+          },
+          "filename": {
+            "type": "string",
+            "pattern": "^[^/]",
+            "description": "Relative path to new .deb file"
+          },
+          "size_bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "File size of new .deb"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "SHA-256 of new .deb"
+          },
+          "is_security_update": {
+            "type": "boolean",
+            "description": "Whether this is a security fix"
+          }
+        },
+        "additionalProperties": false
+      },
+      "description": "Packages with version changes"
+    },
+    "transfer_size_bytes": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total size of all .deb files in bytes"
+    },
+    "package_count": {
+      "type": "object",
+      "required": ["added", "removed", "upgraded", "total_in_snapshot"],
+      "properties": {
+        "added": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of added packages"
+        },
+        "removed": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of removed packages"
+        },
+        "upgraded": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of upgraded packages"
+        },
+        "total_in_snapshot": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total packages in source snapshot"
+        }
+      },
+      "additionalProperties": false
+    },
+    "gpg_signature": {
+      "type": "object",
+      "required": ["signer_key_id", "signature_file", "algorithm"],
+      "properties": {
+        "signer_key_id": {
+          "type": "string",
+          "description": "GPG key ID used to sign"
+        },
+        "signature_file": {
+          "type": "string",
+          "description": "Relative path to detached signature"
+        },
+        "algorithm": {
+          "type": "string",
+          "description": "Signature algorithm"
+        }
+      },
+      "additionalProperties": false
+    },
+    "checksum_algorithm": {
+      "type": "string",
+      "enum": ["sha256"],
+      "description": "Hash algorithm for file checksums"
+    }
+  },
+  "additionalProperties": false
+}

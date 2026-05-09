@@ -1,0 +1,30 @@
+# Example terraform.tfvars for commercial (low-side) environment
+# Copy to terraform.tfvars and customize for your deployment
+
+# Environment configuration
+environment = "dev"
+location    = "eastus"
+owner       = "your-team-or-name"
+
+# Compliance tags
+classification = "CUI"
+compliance     = "IL4"
+
+# VM configuration
+aptly_vm_size        = "Standard_D4s_v5"
+aptly_admin_username = "aptlyadmin"
+
+# SSH public key for VM access (replace with your actual public key)
+admin_ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQ... user@host"
+
+# Network configuration (defaults are usually fine)
+# vnet_address_space               = ["10.0.0.0/16"]
+# aptly_subnet_address_prefix      = "10.0.1.0/24"
+# privatelink_subnet_address_prefix = "10.0.2.0/24"
+
+# Feature flags
+enable_blob_storage          = false  # Set to true for Phase 2 (Blob storage)
+enable_customer_managed_keys = true   # Enable CMK for encryption at rest
+
+# Management access (if using bastion or jumpbox)
+# allowed_source_ips = ["203.0.113.0/24"]
