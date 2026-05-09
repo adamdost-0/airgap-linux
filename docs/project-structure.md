@@ -1,9 +1,20 @@
 # Project Structure
 
-This repo is organized around a contract-first monthly package pipeline. The
-canonical overview lives in `docs/architecture.md`; this page maps directories
-to ownership, and `docs/diagrams/airgap-package-flow.svg` shows the same flow
-visually.
+This is the canonical repo map for M1. Keep this page, the root `README.md`,
+`docs/README.md`, `tests/README.md`, and
+`docs/diagrams/airgap-package-flow.svg` aligned.
+
+The architecture overview lives in `docs/architecture.md`; this page maps the
+directories to ownership and tells contributors where validation evidence
+belongs.
+
+## M1 focus
+
+1. Commercial side mirrors Ubuntu and prepares monthly deltas.
+2. Transfer tooling signs, verifies, and encrypts the bundle.
+3. High side ingests, removes, and publishes from local Aptly repos.
+4. Tests capture evidence that each completed task still matches the repo
+   structure.
 
 ## Monthly flow
 
@@ -44,3 +55,5 @@ visually.
 - High-side documentation and code must not reference public internet URLs.
 - Commercial-side mirror docs may mention upstream Ubuntu archives where needed.
 - Keep this page and the diagram in sync when directory ownership changes.
+- Keep validation evidence with the test area that matches the change, and use
+  `tests/README.md` as the canonical guide for what to record.

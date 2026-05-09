@@ -7,8 +7,8 @@
 - **By:** McCauley
 - **Date:** 2026-05-07T16:14:10Z
 - **Status:** Active
-- **Decision:** Active squad model governance no longer selects or lists the retired fast model. Fast/cheap non-code and mechanical tasks use `gpt-5.4-mini`; premium architecture, reviewer gates, security, and multi-agent coordination use `gpt-5.5`.
-- **Scope:** `.github/agents/squad.agent.md`, `.squad/templates/squad.agent.md`, and active agent charter review.
+- **Decision:** Active squad model governance uses `gpt-5.5` with reasoning profile `xhigh` for all normal spawned squad tasks. Cost-saving or specialist models are opt-in only by explicit user request or required capability fallback.
+- **Scope:** `.github/agents/squad.agent.md`, `.squad/templates/squad.agent.md`, `.squad/skills/model-selection-governance/SKILL.md`, and active agent charter review.
 - **Consolidated from:** `.squad/decisions/inbox/mccauley-model-selection.md`, `.squad/decisions/inbox/copilot-directive-2026-05-07T16-14-10Z.md`
 
 ## Governance
@@ -139,3 +139,36 @@
   - Replaced `$schema` and `$id` public URLs with URN-style identifiers.
   - Offline JSON Schema validation remains functional with the existing stdlib validator.
   - Schema metadata no longer references public internet resources.
+
+### M1 docs baseline update
+- **File:** .squad/decisions/inbox/eady-m1-docs-update.md
+- **Date:** 2026-05-09
+- **Author:** Eady
+- **Status:** Merged
+- **Task:** Keep the repo map and validation guidance canonical for M1
+- **Key points:**
+  - `docs/project-structure.md` remains the canonical repo map.
+  - `tests/README.md` is the canonical validation-evidence guide.
+  - Root and docs READMEs stay brief pointers instead of duplicating structure.
+
+### M1 evidence path
+- **File:** .squad/decisions/inbox/hanna-m1-evidence-path.md
+- **Date:** 2026-05-09
+- **Author:** Hanna
+- **Status:** Resolved
+- **Task:** Define one explicit home for M1 validation evidence
+- **Key points:**
+  - M1 evidence now lives under `tests/README.md`.
+  - Validation proof should stay close to the relevant test category.
+  - The evidence path is no longer blocked by missing location guidance.
+
+### M1 scope contract
+- **File:** .squad/decisions/inbox/mccauley-m1-scope-contract.md
+- **Date:** 2026-05-09
+- **Author:** McCauley
+- **Status:** Provisional
+- **Task:** Define the M1 burn-down scope and acceptance bar
+- **Key points:**
+  - M1 is a repo baseline with contract clarity and evidence-backed validation, not a finished product.
+  - Canonical evidence now lives in `tests/README.md`, aligned with the docs baseline.
+  - `docs/project-structure.md` remains the canonical map for ownership and monthly flow.
