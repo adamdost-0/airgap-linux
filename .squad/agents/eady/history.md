@@ -124,3 +124,4 @@
 - `docs/project-structure.md` is the single source of truth for directory ownership and where validation evidence belongs
 - `tests/README.md` now defines what counts as validation evidence and keeps proof close to the relevant test category
 - `docs/diagrams/airgap-package-flow.svg` was updated so the visual matches the docs-first baseline and explicitly references docs/tests
+- 2026-05-09: M1 burn-down confirmed the docs baseline: `docs/project-structure.md` is the canonical repo map, and `tests/README.md` is the canonical validation-evidence guide.
