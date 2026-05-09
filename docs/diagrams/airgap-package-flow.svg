@@ -25,7 +25,7 @@
 
   <rect class="bg" x="0" y="0" width="1280" height="760"/>
   <text class="title" x="40" y="42">airgap-linux package flow</text>
-  <text class="subtitle" x="40" y="66">Commercial-side upstream sync, monthly delta packaging, air-gapped transfer, and high-side publication.</text>
+  <text class="subtitle" x="40" y="66">Commercial-side upstream sync, monthly delta packaging, air-gapped transfer, high-side publication, and matching validation evidence.</text>
 
   <rect class="lane" x="30" y="92" width="1220" height="250"/>
   <rect class="lane" x="30" y="360" width="1220" height="250"/>
@@ -102,8 +102,8 @@
   <text class="note" x="448" y="696">transfer/encrypt/</text>
 
   <rect class="legend" x="820" y="610" width="420" height="98"/>
-  <text class="legend-title" x="838" y="638">High-side ownership</text>
-  <text class="note" x="838" y="660">highside/scripts/</text>
-  <text class="note" x="838" y="678">highside/aptly/</text>
-  <text class="note" x="838" y="696">highside/infra/ and tests/</text>
+  <text class="legend-title" x="838" y="638">Documentation and tests</text>
+  <text class="note" x="838" y="660">docs/</text>
+  <text class="note" x="838" y="678">docs/diagrams/</text>
+  <text class="note" x="838" y="696">tests/</text>
 </svg>

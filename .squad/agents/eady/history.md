@@ -117,3 +117,10 @@
 
 - 2026-05-07: Canonical project-structure documentation and the package-flow diagram were added, keeping README pointers brief and centralized.
 - 2026-05-07: Repository Copilot guidance was documented for future sessions without inventing build/test/lint commands.
+
+### M1 Docs Baseline
+
+- `README.md` and `docs/README.md` now stay intentionally short and point to the canonical docs instead of repeating the full map
+- `docs/project-structure.md` is the single source of truth for directory ownership and where validation evidence belongs
+- `tests/README.md` now defines what counts as validation evidence and keeps proof close to the relevant test category
+- `docs/diagrams/airgap-package-flow.svg` was updated so the visual matches the docs-first baseline and explicitly references docs/tests

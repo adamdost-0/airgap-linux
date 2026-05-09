@@ -15,6 +15,7 @@ package/data-flow diagrams in `airgap-linux`.
 
 - Keep `docs/project-structure.md` as the concise canonical directory map.
 - Keep the root `README.md` and `docs/README.md` to short pointers only.
+- Keep `tests/README.md` as the place that explains validation evidence and what proof to capture.
 - Update `docs/diagrams/airgap-package-flow.svg` whenever ownership or flow changes.
 - Separate commercial-side upstream references from high-side air-gapped flow language.
 

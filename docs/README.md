@@ -1,11 +1,11 @@
 # docs/
 
-Architecture documentation, Architecture Decision Records (ADRs), and schema definitions for the airgap-linux pipeline.
+Short pointer index for the canonical documentation set.
 
 ## Contents
 
-- `architecture.md` — System design, data flow diagrams, component responsibilities
-- `project-structure.md` — Canonical directory map and ownership boundaries
-- `manifest-schema.md` — Transfer manifest JSON schema and examples
-- `diagrams/` — Source-controlled SVG architecture diagrams
-- `adr/` — Architecture Decision Records
+- `project-structure.md` — canonical directory map and M1 validation-evidence guidance
+- `architecture.md` — system flow and component responsibilities
+- `manifest-schema.md` — transfer manifest contract
+- `diagrams/` — source-controlled SVG diagrams
+- `adr/` — architecture decision records
