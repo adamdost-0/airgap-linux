@@ -22,6 +22,7 @@ locals {
   vm_name                  = "${local.name_prefix}-vm"
   storage_account_name     = "aptlygov${var.environment}${random_string.storage_suffix.result}"
   key_vault_name           = "${local.name_prefix}-kv-${random_string.kv_suffix.result}"
+  storage_cmk_key_name     = "${local.name_prefix}-storage-cmk"
   ilb_name                 = "${local.name_prefix}-ilb"
   
   # Managed identity for Aptly VM

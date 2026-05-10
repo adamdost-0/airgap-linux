@@ -147,6 +147,23 @@ resource "azurerm_role_assignment" "aptly_kv_crypto_user" {
   principal_id         = azurerm_user_assigned_identity.aptly.principal_id
 }
 
+resource "azurerm_role_assignment" "aptly_kv_crypto_service_encryption_user" {
+  count                = var.enable_blob_storage && var.enable_customer_managed_keys ? 1 : 0
+  scope                = azurerm_key_vault.main.id
+  role_definition_name = "Key Vault Crypto Service Encryption User"
+  principal_id         = azurerm_user_assigned_identity.aptly.principal_id
+}
+
+resource "azurerm_key_vault_key" "storage_cmk" {
+  count        = var.enable_blob_storage && var.enable_customer_managed_keys ? 1 : 0
+  name         = local.storage_cmk_key_name
+  key_vault_id = azurerm_key_vault.main.id
+  key_type     = "RSA"
+  key_size     = 2048
+  key_opts     = ["decrypt", "encrypt", "sign", "unwrapKey", "verify", "wrapKey"]
+  tags         = local.common_tags
+}
+
 # Private Endpoint for Key Vault
 resource "azurerm_private_endpoint" "key_vault" {
   name                = "${local.key_vault_name}-pe"
@@ -203,8 +220,18 @@ resource "azurerm_storage_account" "aptly" {
   # Enable infrastructure encryption
   infrastructure_encryption_enabled = true
 
-  # TODO: Enable customer-managed key when var.enable_customer_managed_keys is true
-  # Requires Key Vault key resource and RBAC permissions
+  identity {
+    type         = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.aptly.id]
+  }
+
+  dynamic "customer_managed_key" {
+    for_each = var.enable_customer_managed_keys ? [1] : []
+    content {
+      key_vault_key_id          = azurerm_key_vault_key.storage_cmk[0].id
+      user_assigned_identity_id = azurerm_user_assigned_identity.aptly.id
+    }
+  }
 
   blob_properties {
     versioning_enabled = true
@@ -220,6 +247,17 @@ resource "azurerm_storage_account" "aptly" {
   }
 
   tags = local.common_tags
+
+  depends_on = [
+    azurerm_role_assignment.aptly_kv_crypto_service_encryption_user
+  ]
+}
+
+resource "azurerm_storage_container" "aptly_pool" {
+  count                 = var.enable_blob_storage ? 1 : 0
+  name                  = var.aptly_pool_container_name
+  storage_account_id    = azurerm_storage_account.aptly[0].id
+  container_access_type = "private"
 }
 
 # Grant Storage Blob Data Contributor to Aptly managed identity

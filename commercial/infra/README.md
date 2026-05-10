@@ -97,6 +97,7 @@ terraform apply tfplan
 - `location` — Azure region (default: `eastus`)
 - `aptly_vm_size` — VM SKU (default: `Standard_D4s_v5`)
 - `enable_blob_storage` — Enable Phase 2 blob storage (default: `false`)
+- `aptly_pool_container_name` — Blob container for the Aptly pool when Phase 2 storage is enabled (default: `aptly-pool`)
 - `enable_customer_managed_keys` — Enable CMK encryption (default: `true`)
 - `enable_log_analytics` — Enable Log Analytics workspace (default: `true`)
 - `log_retention_days` — Log retention period in days, 30-730 (default: `90`)
@@ -147,7 +148,7 @@ Enabled by default via `enable_log_analytics = true`:
 
 ## TODO
 
-- [ ] Add customer-managed key (CMK) implementation when `enable_customer_managed_keys = true`
+- [ ] Validate Phase 2 blob storage apply with `enable_blob_storage = true`
 - [ ] Install Azure Monitor Agent extension for VM system log collection (syslog, auth, apt)
 - [ ] Add cloud-init or custom_data for Aptly installation automation
 - [ ] Add Azure Bastion or jumpbox for secure VM access

@@ -48,6 +48,21 @@ output "storage_account_primary_blob_endpoint" {
   value       = var.enable_blob_storage ? azurerm_storage_account.aptly[0].primary_blob_endpoint : null
 }
 
+output "storage_container_name" {
+  description = "Blob container name for the Aptly pool (if enabled)"
+  value       = var.enable_blob_storage ? azurerm_storage_container.aptly_pool[0].name : null
+}
+
+output "storage_container_resource_manager_id" {
+  description = "ARM resource ID for the Aptly pool blob container (if enabled)"
+  value       = var.enable_blob_storage ? azurerm_storage_container.aptly_pool[0].resource_manager_id : null
+}
+
+output "storage_cmk_key_id" {
+  description = "Key Vault key ID used for storage CMK encryption (if enabled)"
+  value       = var.enable_blob_storage && var.enable_customer_managed_keys ? azurerm_key_vault_key.storage_cmk[0].id : null
+}
+
 output "internal_load_balancer_ip" {
   description = "Internal load balancer frontend IP (if enabled)"
   value       = var.enable_internal_load_balancer ? azurerm_lb.internal[0].frontend_ip_configuration[0].private_ip_address : null

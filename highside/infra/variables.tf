@@ -100,6 +100,17 @@ variable "enable_blob_storage" {
   default     = false
 }
 
+variable "aptly_pool_container_name" {
+  description = "Blob container name for the Aptly pool when Phase 2 blob storage is enabled"
+  type        = string
+  default     = "aptly-pool"
+
+  validation {
+    condition     = can(regex("^[a-z0-9](?:[a-z0-9-]{1,61}[a-z0-9])?$", var.aptly_pool_container_name))
+    error_message = "Aptly pool container name must be a valid Azure Storage container name."
+  }
+}
+
 variable "enable_customer_managed_keys" {
   description = "Enable customer-managed keys (CMK) for encryption at rest"
   type        = bool

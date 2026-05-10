@@ -118,6 +118,7 @@ terraform apply tfplan
 - `aptly_vm_size` — VM SKU (default: `Standard_D4s_v5`)
 - `internal_dns_suffix` — Internal DNS zone (default: `apt.internal.local`)
 - `enable_blob_storage` — Enable Phase 2 blob storage (default: `false`)
+- `aptly_pool_container_name` — Blob container for the Aptly pool when Phase 2 storage is enabled (default: `aptly-pool`)
 - `enable_customer_managed_keys` — Enable CMK encryption (default: `true`)
 - `enable_internal_load_balancer` — Enable HA with ILB (default: `false`)
 - `allowed_client_subnets` — Client CIDRs allowed to access repo (default: `[]`)

@@ -24,6 +24,7 @@ admin_ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQ... user@host"
 
 # Feature flags
 enable_blob_storage          = false  # Set to true for Phase 2 (Blob storage)
+aptly_pool_container_name    = "aptly-pool"
 enable_customer_managed_keys = true   # Enable CMK for encryption at rest
 
 # Management access (if using bastion or jumpbox)
