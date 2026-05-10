@@ -62,7 +62,7 @@ local filesystem on each side.
 | P2-M2 | Low-side Aptly snapshot export | Cheritto | P2-M1 local disk paths documented | Mirror update, snapshot create, snapshot diff, and bundle package evidence using `-config="${APTLY_CONFIG}"` |
 | P2-M3 | HDD transfer verification | Nate + Drucker | P2-M2 bundle exists | GPG signature, schema, continuity, checksum, and completeness evidence |
 | P2-M4 | High-side Aptly repo hydration | Cheritto + Nate | P2-M3 verification passes | Import, remove, publish, reconcile, and smoke-test evidence against local high-side repos |
-| P2-M5 | PM acceptance signoff | Hanna | P2-M1 through P2-M4 complete | `tests/` evidence index links all lane outputs and unresolved risks |
+| P2-M5 | PM acceptance signoff | Hanna | P2-M1 through P2-M4 complete | `tests/integration/README.md` links all lane outputs and unresolved risks |
 
 ## Subagent spawn contracts
 
@@ -71,11 +71,12 @@ Each Phase 2 spawn must include:
 - the milestone ID from the table above;
 - the owning path from `docs/project-structure.md`;
 - explicit in-scope and out-of-scope bullets from this document;
-- the expected evidence path under `tests/`; and
+- the expected evidence section under the existing `tests/` category index; and
 - the reviewer or PM acceptance gate.
 
 No subagent should claim a Phase 2 item complete with narrative status only.
-Completion requires repo-backed evidence or a documented blocker.
+Completion requires repo-backed evidence in the owning implementation path plus
+a `tests/` category index entry or a documented blocker.
 
 ## Design and architecture checkpoints
 
@@ -87,7 +88,8 @@ Completion requires repo-backed evidence or a documented blocker.
   checksums, then completeness.
 - Use local Aptly filesystem paths on both sides; package bits move by encrypted
   HDD, not by shared object storage.
-- Keep `docs/project-structure.md` as the repo map and `tests/README.md` as the
-  validation-evidence guide.
+- Keep `docs/project-structure.md` as the repo map and `tests/README.md` plus
+  category indexes such as `tests/integration/README.md` as validation-evidence
+  guides.
 - Update the architecture diagram only when the implemented data flow changes,
   not for planning text alone.

@@ -31,8 +31,7 @@ structure and contract. Keep evidence close to the test category it supports.
 
 Current Phase 2 evidence:
 
-- `integration/phase-2-bicep-infra.md` — P2-M1 Bicep infrastructure evidence
-- `integration/phase-2-native-aptly-hdd.md` — P2-M2 through P2-M4 native Aptly/HDD evidence
+- `integration/README.md` — P2-M1 through P2-M4 integration evidence index by owned implementation path
 
 ## Evidence guidance
 

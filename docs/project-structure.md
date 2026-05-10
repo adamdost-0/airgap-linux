@@ -52,6 +52,23 @@ belongs.
 - `docs/diagrams/` — source-controlled SVG diagrams
 - `tests/` — schema, integration, and validation tests
 
+## Generated content placement
+
+Generated implementation content must land in the directory that owns the runtime
+behavior, not in a new milestone-only area. Use this map before adding files:
+
+| Content type | Canonical location | Notes |
+|--------------|--------------------|-------|
+| Commercial Aptly config or mirror guidance | `commercial/aptly/` | Keep upstream Ubuntu references on the commercial side only. |
+| Commercial workflow scripts | `commercial/scripts/` | Mirror, snapshot, diff, manifest, and bundle logic belongs here. |
+| Commercial Azure infrastructure | `commercial/infra/` | Bicep templates, parameter examples, and infra README updates belong here. |
+| Transfer manifests, encryption, and verification | `transfer/manifest/`, `transfer/encrypt/`, `transfer/verify/` | Keep validation order and schema references with transfer tooling. |
+| High-side Aptly config or publish guidance | `highside/aptly/` | High-side content must not reference public internet resources. |
+| High-side ingestion and repo operations | `highside/scripts/` | Verify, import, remove, publish, reconcile, and smoke-test logic belongs here. |
+| High-side Azure infrastructure | `highside/infra/` | Bicep templates, parameter examples, and infra README updates belong here. |
+| Architecture or milestone decisions | `docs/` | Cross-cutting decisions may link to owned paths but should not duplicate implementation detail. |
+| Validation evidence | `tests/` | Add or update category indexes, such as `tests/integration/README.md`, instead of creating isolated milestone evidence files. |
+
 ## Notes
 
 - High-side documentation and code must not reference public internet URLs.
