@@ -59,9 +59,10 @@ When triaging, the Lead should ask:
 |-----------|---------|----------|
 | Architecture, decisions, review | McCauley | — |
 | Azure IaC, networking | Shiherlis | — |
+| Phase 2 blob storage IaC | Shiherlis | Cheritto |
 | Aptly, APT, Linux | Cheritto | — |
 | Encryption, integrity, transfer | Nate | Drucker |
 | Documentation, diagrams, SVGs | Eady | — |
 | Threat modeling, compliance, STIGs | Drucker | Nate |
 | Backlog, acceptance, delivery oversight | Hanna | — |
-
+| Phase 2 PM acceptance evidence | Hanna | McCauley |

@@ -2,6 +2,14 @@
 
 ## Active Decisions
 
+### Phase 2 milestone contract
+
+- **By:** McCauley + Hanna
+- **Date:** 2026-05-10T02:34:52Z
+- **Status:** Active
+- **Decision:** Phase 2 starts from `docs/phase-2-milestones.md`, which defines the blob-backed Aptly storage scope, subagent owner lanes, spawn gates, and PM acceptance evidence before implementation work begins.
+- **Scope:** `docs/phase-2-milestones.md`, `docs/project-structure.md`, `tests/README.md`, `.squad/routing.md`
+
 ### Model selection governance
 
 - **By:** McCauley

@@ -8,13 +8,15 @@ The architecture overview lives in `docs/architecture.md`; this page maps the
 directories to ownership and tells contributors where validation evidence
 belongs.
 
-## M1 focus
+## Milestone focus
 
 1. Commercial side mirrors Ubuntu and prepares monthly deltas.
 2. Transfer tooling signs, verifies, and encrypts the bundle.
 3. High side ingests, removes, and publishes from local Aptly repos.
 4. Tests capture evidence that each completed task still matches the repo
    structure.
+5. Phase 2 scope, owner lanes, and PM acceptance gates are tracked in
+   `docs/phase-2-milestones.md`.
 
 ## Monthly flow
 
@@ -46,7 +48,7 @@ belongs.
 
 ### Documentation and tests
 
-- `docs/` — architecture, schema, ADRs, and this structure map
+- `docs/` — architecture, schema, ADRs, milestones, and this structure map
 - `docs/diagrams/` — source-controlled SVG diagrams
 - `tests/` — schema, integration, and validation tests
 

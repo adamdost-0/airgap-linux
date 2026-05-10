@@ -36,6 +36,9 @@ structure and contract. Keep evidence close to the test category it supports.
 - If a suite does not yet have executable tooling, record the exact command and
   output in the matching test README or fixture note.
 - Prefer concise, reviewable proof over duplicated narrative.
+- For Phase 2 work, include the milestone ID from
+  `docs/phase-2-milestones.md` in the evidence note so PM acceptance can trace
+  the proof back to the subagent spawn contract.
 
 ## Running Tests
 

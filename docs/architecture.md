@@ -234,6 +234,8 @@ Aptly pool storage migrates to Azure Blob Storage mounted via blobfuse2:
 - High-side: Azure Government Blob (`.blob.core.usgovcloudapi.net`)
 
 Both accessed via Private Endpoints only. Managed Identity for authentication.
+Phase 2 scope, implementation lanes, and PM acceptance evidence are tracked in
+`docs/phase-2-milestones.md`.
 
 ## Security Considerations
 

@@ -9,6 +9,10 @@ Cross-domain Aptly repository pipeline for Azure air-gapped environments.
 - Transfer contract: `docs/manifest-schema.md`
 - Validation evidence: `tests/README.md`
 
+## Phase 2 milestones
+
+- Scope and subagent handoff contract: `docs/phase-2-milestones.md`
+
 ## Constraints
 
 - Air-gap first
