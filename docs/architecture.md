@@ -227,15 +227,16 @@ Both commercial and high-side Aptly instances store packages on local disk:
 - Commercial: `/opt/aptly/` (standard Aptly root)
 - High-side: `/opt/aptly/` with separate pool directories per component
 
-### Phase 2: Azure Blob via blobfuse2
+### Phase 2: Native Aptly local storage
 
-Aptly pool storage migrates to Azure Blob Storage mounted via blobfuse2:
-- Commercial: Azure Commercial Blob (`.blob.core.windows.net`)
-- High-side: Azure Government Blob (`.blob.core.usgovcloudapi.net`)
+Aptly pool storage remains on local managed disks on both sides. The low side
+creates snapshots and extracts the added/upgraded package binaries into the
+transfer bundle; the high side verifies the HDD contents and hydrates local Aptly
+repos with native Aptly commands.
 
-Both accessed via Private Endpoints only. Managed Identity for authentication.
-Phase 2 scope, implementation lanes, and PM acceptance evidence are tracked in
-`docs/phase-2-milestones.md`.
+Bicep provisions the Azure VM, local disk, private networking, managed identity,
+and Key Vault support resources. Phase 2 scope, implementation lanes, and PM
+acceptance evidence are tracked in `docs/phase-2-milestones.md`.
 
 ## Security Considerations
 

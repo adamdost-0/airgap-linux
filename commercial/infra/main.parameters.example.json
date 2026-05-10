@@ -1,0 +1,32 @@
+{
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "environment": {
+      "value": "dev"
+    },
+    "location": {
+      "value": "eastus"
+    },
+    "owner": {
+      "value": "your-team-or-name"
+    },
+    "classification": {
+      "value": "CUI"
+    },
+    "compliance": {
+      "value": "IL4"
+    },
+    "aptlyVmSize": {
+      "value": "Standard_D4s_v5"
+    },
+    "aptlyAdminUsername": {
+      "value": "aptlyadmin"
+    },
+    "adminSshPublicKey": {
+      "value": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQ... user@host"
+    },
+    "aptlyDataDiskSizeGb": {
+      "value": 512
+    }
+  }
+}

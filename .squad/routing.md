@@ -59,7 +59,8 @@ When triaging, the Lead should ask:
 |-----------|---------|----------|
 | Architecture, decisions, review | McCauley | — |
 | Azure IaC, networking | Shiherlis | — |
-| Phase 2 blob storage IaC | Shiherlis | Cheritto |
+| Phase 2 Bicep infrastructure | Shiherlis | McCauley |
+| Phase 2 native Aptly/HDD hydration | Cheritto | Nate |
 | Aptly, APT, Linux | Cheritto | — |
 | Encryption, integrity, transfer | Nate | Drucker |
 | Documentation, diagrams, SVGs | Eady | — |

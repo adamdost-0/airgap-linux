@@ -31,9 +31,8 @@ structure and contract. Keep evidence close to the test category it supports.
 
 Current Phase 2 evidence:
 
-- `integration/phase-2-blob-storage.md` — P2-M1 blob storage IaC evidence
-- `integration/phase-2-blob-pool-validation.md` — P2-M2 blob pool mount readiness evidence
-- `integration/phase-2-transfer-validation.md` — P2-M3 transfer validation evidence
+- `integration/phase-2-bicep-infra.md` — P2-M1 Bicep infrastructure evidence
+- `integration/phase-2-native-aptly-hdd.md` — P2-M2 through P2-M4 native Aptly/HDD evidence
 
 ## Evidence guidance
 

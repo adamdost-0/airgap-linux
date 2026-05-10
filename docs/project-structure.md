@@ -32,7 +32,7 @@ belongs.
 
 - `commercial/aptly/` — mirror definitions, snapshot naming, commercial Aptly config
 - `commercial/scripts/` — mirror update, snapshot creation, diffing, bundle packaging
-- `commercial/infra/` — Azure Commercial infrastructure
+- `commercial/infra/` — Azure Commercial Bicep infrastructure
 
 ### Transfer tooling
 
@@ -44,7 +44,7 @@ belongs.
 
 - `highside/scripts/` — ingest, verify, import, remove, publish, reconcile, smoke test
 - `highside/aptly/` — local repo and publish configuration
-- `highside/infra/` — Azure Government infrastructure
+- `highside/infra/` — Azure Government Bicep infrastructure
 
 ### Documentation and tests
 

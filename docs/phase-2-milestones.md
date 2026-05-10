@@ -1,7 +1,9 @@
 # Phase 2 Milestones
 
-Phase 2 moves the M1 local-filesystem Aptly baseline toward blob-backed
-storage and evidence-driven acceptance without widening the product scope.
+Phase 2 moves the M1 planning baseline into native Aptly operations backed by
+Bicep-provisioned Azure VMs and local filesystem storage. The low side creates
+Aptly snapshots and export bundles; the high side verifies HDD contents and
+hydrates local Aptly repos each transfer cycle.
 
 ## PM and design review outcome
 
@@ -13,51 +15,53 @@ storage and evidence-driven acceptance without widening the product scope.
   `docs/adr/001-aptly-snapshot-diffs.md`, `commercial/infra/README.md`,
   `highside/infra/README.md`, `.squad/decisions.md`, `.squad/routing.md`,
   and `tests/README.md`
-- **On-track finding:** M1 gives Phase 2 a usable contract baseline: owned
-  directories are clear, transfer validation order is documented, and
-  `tests/README.md` is the evidence guide.
-- **Gap closed here:** Phase 2 now has a single milestone contract that names
-  owner lanes, spawn gates, and PM acceptance evidence before implementation
-  subagents begin.
+- **Direction update:** Terraform, Azure Blob-backed Aptly pools, and blobfuse2
+  are out. Bicep is the infrastructure language, and native Aptly local
+  filesystem workflows are the product path.
+- **Gap closed here:** Phase 2 has a single milestone contract that names owner
+  lanes, spawn gates, and PM acceptance evidence before implementation subagents
+  continue.
 
 ## Value
 
-Phase 2 proves that both sides of the pipeline can use Azure Blob-backed Aptly
-pool storage through private endpoints while preserving the air-gap, transfer,
-verification, and audit controls established in M1.
+Phase 2 proves the full monthly path using only native Aptly repository tools:
+low-side mirror snapshots, signed HDD bundles, high-side verification, and
+high-side local repo hydration without any package-pool dependency outside the
+local filesystem on each side.
 
 ## Scope
 
 ### In scope
 
-1. Blob-backed Aptly pool design for commercial and high-side environments.
-2. Terraform work to enable storage, private endpoints, managed identity access,
-   CMK-ready encryption, and diagnostics when `enable_blob_storage = true`.
-3. blobfuse2 mount and Aptly operation validation for mirror, snapshot, diff,
-   repo import, remove, publish, and smoke-test flows.
-4. Transfer-cycle evidence showing manifest, checksum, signature, continuity,
-   and completeness checks still pass with blob-backed package pools.
+1. Bicep infrastructure for commercial and high-side Aptly VMs, local data disks,
+   private networking, managed identity, Key Vault, and required tags.
+2. Low-side native Aptly snapshot creation, snapshot diffing, package extraction,
+   manifest generation, and signing from local filesystem storage.
+3. HDD transfer bundle evidence for manifest, checksum, signature, continuity,
+   and completeness checks.
+4. High-side native Aptly repo hydration: verify HDD contents, import added and
+   upgraded packages, remove dropped packages, publish, reconcile, and smoke test.
 5. PM acceptance evidence under `tests/`, tied to the owner lane that produced
    the proof.
 
 ### Out of scope
 
-1. High-availability repo serving, VM scale sets, or multi-region replication.
-2. Fully automated internal PKI certificate issuance.
-3. New package ecosystems beyond Ubuntu 24.04 noble/amd64.
-4. Internet connectivity from the high side.
-5. Performance tuning beyond a documented baseline for blob-backed Aptly
-   operations.
+1. Terraform.
+2. Azure Blob-backed Aptly pools or blobfuse2 mounts.
+3. High-availability repo serving, VM scale sets, or multi-region replication.
+4. Fully automated internal PKI certificate issuance.
+5. New package ecosystems beyond Ubuntu 24.04 noble/amd64.
+6. Internet connectivity from the high side.
 
 ## Milestone sequence
 
 | ID | Milestone | Primary owner | Spawn gate | Acceptance evidence |
 |----|-----------|---------------|------------|---------------------|
-| P2-M0 | Scope lock and architecture handoff | McCauley + Hanna | This document is linked from the canonical docs and decisions | PM confirms each lane has owner, input, output, and evidence |
-| P2-M1 | Blob storage IaC | Shiherlis | P2-M0 complete | Terraform format/validation or captured unavailable-tool evidence for commercial and high-side infra |
-| P2-M2 | blobfuse2 Aptly pool validation | Cheritto | P2-M1 resource outputs documented | Aptly mirror/snapshot/diff or repo import/remove/publish commands run against mounted pool paths |
-| P2-M3 | Transfer validation with blob-backed pools | Nate + Cheritto | P2-M2 operation evidence | Manifest validation, GPG signature, continuity, checksum, and completeness evidence |
-| P2-M4 | Security and audit review | Drucker + Nate | P2-M1 diagnostics and P2-M3 transfer evidence | CMK posture, managed identity permissions, private endpoint posture, and audit evidence review |
+| P2-M0 | Scope lock and architecture handoff | McCauley + Hanna | This document is linked from canonical docs and decisions | PM confirms each lane has owner, input, output, and evidence |
+| P2-M1 | Bicep infrastructure baseline | Shiherlis | P2-M0 complete | `bicep build` evidence for commercial and high-side templates |
+| P2-M2 | Low-side Aptly snapshot export | Cheritto | P2-M1 local disk paths documented | Mirror update, snapshot create, snapshot diff, and bundle package evidence using `-config="${APTLY_CONFIG}"` |
+| P2-M3 | HDD transfer verification | Nate + Drucker | P2-M2 bundle exists | GPG signature, schema, continuity, checksum, and completeness evidence |
+| P2-M4 | High-side Aptly repo hydration | Cheritto + Nate | P2-M3 verification passes | Import, remove, publish, reconcile, and smoke-test evidence against local high-side repos |
 | P2-M5 | PM acceptance signoff | Hanna | P2-M1 through P2-M4 complete | `tests/` evidence index links all lane outputs and unresolved risks |
 
 ## Subagent spawn contracts
@@ -81,6 +85,8 @@ Completion requires repo-backed evidence or a documented blocker.
   dependencies; use government or internal endpoints only.
 - Preserve the M1 validation order: GPG signature, JSON schema, continuity,
   checksums, then completeness.
+- Use local Aptly filesystem paths on both sides; package bits move by encrypted
+  HDD, not by shared object storage.
 - Keep `docs/project-structure.md` as the repo map and `tests/README.md` as the
   validation-evidence guide.
 - Update the architecture diagram only when the implemented data flow changes,
