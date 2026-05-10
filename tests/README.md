@@ -33,6 +33,7 @@ Current Phase 2 evidence:
 
 - `integration/phase-2-blob-storage.md` — P2-M1 blob storage IaC evidence
 - `integration/phase-2-blob-pool-validation.md` — P2-M2 blob pool mount readiness evidence
+- `integration/phase-2-transfer-validation.md` — P2-M3 transfer validation evidence
 
 ## Evidence guidance
 
