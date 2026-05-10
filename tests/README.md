@@ -29,6 +29,11 @@ structure and contract. Keep evidence close to the test category it supports.
 - `integration/` — End-to-end tests using Aptly with test repos
 - `schema/` — JSON Schema validation tests for manifest format
 
+Current Phase 2 evidence:
+
+- `integration/phase-2-blob-storage.md` — P2-M1 blob storage IaC evidence
+- `integration/phase-2-blob-pool-validation.md` — P2-M2 blob pool mount readiness evidence
+
 ## Evidence guidance
 
 - Put evidence in the nearest matching test area rather than creating a new
